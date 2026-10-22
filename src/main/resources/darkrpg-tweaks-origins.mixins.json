@@ -1,0 +1,13 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "darkrpg.tweaks.compat.origins.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "plugin": "darkrpg.tweaks.compat.OriginsMissingLayerMixinPlugin",
+  "client": [
+    "OriginsEntityConditionsMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "id": "tiered:rare_ranged_4",
+  "verifiers": [
+    {
+      "tag": "c:bows"
+    },
+    {
+      "tag": "c:crossbows"
+    }
+  ],
+  "weight": 20,
+  "style": {
+    "color": "blue"
+  },
+  "attributes": [
+    {
+      "type": "tiered:generic.range_attack_damage",
+      "modifier": {
+        "name": "tiered:rare_ranged_4",
+        "operation": "MULTIPLY_TOTAL",
+        "amount": 0.075
+      },
+      "optional_equipment_slots": [
+        "MAINHAND",
+        "OFFHAND"
+      ]
+    },
+    {
+      "type": "tiered:generic.durable",
+      "modifier": {
+        "name": "tiered:rare_ranged_4",
+        "operation": "MULTIPLY_TOTAL",
+        "amount": 0.12
+      },
+      "optional_equipment_slots": [
+        "MAINHAND",
+        "OFFHAND"
+      ]
+    }
+  ]
+}

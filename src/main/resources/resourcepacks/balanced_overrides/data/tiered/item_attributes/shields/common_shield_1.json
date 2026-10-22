@@ -1,0 +1,26 @@
+{
+  "id": "tiered:common_shield_1",
+  "verifiers": [
+    {
+      "tag": "c:shields"
+    }
+  ],
+  "weight": 35,
+  "style": {
+    "color": "gray"
+  },
+  "attributes": [
+    {
+      "type": "generic.armor",
+      "modifier": {
+        "name": "tiered:common_shield_1",
+        "operation": "ADDITION",
+        "amount": 0.25
+      },
+      "optional_equipment_slots": [
+        "MAINHAND",
+        "OFFHAND"
+      ]
+    }
+  ]
+}

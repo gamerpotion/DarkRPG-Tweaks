@@ -1,0 +1,51 @@
+{
+  "id": "tiered:rare_armor_3",
+  "verifiers": [
+    {
+      "tag": "c:helmets"
+    },
+    {
+      "tag": "c:chestplates"
+    },
+    {
+      "tag": "c:leggings"
+    },
+    {
+      "tag": "c:boots"
+    }
+  ],
+  "weight": 20,
+  "style": {
+    "color": "blue"
+  },
+  "attributes": [
+    {
+      "type": "tiered:generic.durable",
+      "modifier": {
+        "name": "tiered:rare_armor_3",
+        "operation": "MULTIPLY_TOTAL",
+        "amount": 0.12
+      },
+      "optional_equipment_slots": [
+        "FEET",
+        "LEGS",
+        "CHEST",
+        "HEAD"
+      ]
+    },
+    {
+      "type": "generic.movement_speed",
+      "modifier": {
+        "name": "tiered:rare_armor_3",
+        "operation": "MULTIPLY_TOTAL",
+        "amount": 0.015
+      },
+      "optional_equipment_slots": [
+        "FEET",
+        "LEGS",
+        "CHEST",
+        "HEAD"
+      ]
+    }
+  ]
+}

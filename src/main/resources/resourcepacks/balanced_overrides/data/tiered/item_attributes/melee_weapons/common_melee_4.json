@@ -1,0 +1,25 @@
+{
+  "id": "tiered:common_melee_4",
+  "verifiers": [
+    {
+      "tag": "c:swords"
+    }
+  ],
+  "weight": 35,
+  "style": {
+    "color": "gray"
+  },
+  "attributes": [
+    {
+      "type": "generic.attack_damage",
+      "modifier": {
+        "name": "tiered:common_melee_4",
+        "operation": "MULTIPLY_TOTAL",
+        "amount": 0.02
+      },
+      "optional_equipment_slots": [
+        "MAINHAND"
+      ]
+    }
+  ]
+}

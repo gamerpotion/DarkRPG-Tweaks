@@ -1,0 +1,14 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "darkrpg.tweaks.compat.pvp.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "plugin": "darkrpg.tweaks.compat.pvp.MoreRpgReflectionMixinPlugin",
+  "mixins": [
+    "PvPReflectionLoopGuardMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "priority": 2100
+}

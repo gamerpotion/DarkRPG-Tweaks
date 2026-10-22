@@ -1,0 +1,6 @@
+DarkRPG Tweaks 1.0.0-beta.1
+Derived from compatibility work in DarkUnbug 1.0.6 beta 2 (GPL-3.0); original HP-repair functionality removed.
+Amethyst Core compatibility patch authored separately in compatible MIT-licensed work, re-integrated here.
+Two JSON overrides expanded from the previously provided DarkRPG Soulslike and TieredZ datapacks.
+Always-enabled built-in data pack requires Fabric API resource loader.
+No third-party JAR bytecode or Minecraft classes are bundled.

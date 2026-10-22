@@ -1,0 +1,14 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "darkrpg.tweaks.compat.cosmetica.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "plugin": "darkrpg.tweaks.compat.CosmeticaEarlyConfigPlugin",
+  "client": [
+    "SnipeKeyBindingMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "priority": 2000
+}

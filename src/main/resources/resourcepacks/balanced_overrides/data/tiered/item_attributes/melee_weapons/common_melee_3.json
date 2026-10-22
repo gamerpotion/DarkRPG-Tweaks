@@ -1,0 +1,25 @@
+{
+  "id": "tiered:common_melee_3",
+  "verifiers": [
+    {
+      "tag": "c:swords"
+    }
+  ],
+  "weight": 35,
+  "style": {
+    "color": "gray"
+  },
+  "attributes": [
+    {
+      "type": "generic.luck",
+      "modifier": {
+        "name": "tiered:common_melee_3",
+        "operation": "ADDITION",
+        "amount": 0.2
+      },
+      "optional_equipment_slots": [
+        "MAINHAND"
+      ]
+    }
+  ]
+}

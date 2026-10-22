@@ -1,0 +1,29 @@
+{
+  "id": "tiered:common_ranged_3",
+  "verifiers": [
+    {
+      "tag": "c:bows"
+    },
+    {
+      "tag": "c:crossbows"
+    }
+  ],
+  "weight": 35,
+  "style": {
+    "color": "gray"
+  },
+  "attributes": [
+    {
+      "type": "generic.movement_speed",
+      "modifier": {
+        "name": "tiered:common_ranged_3",
+        "operation": "MULTIPLY_TOTAL",
+        "amount": 0.005
+      },
+      "optional_equipment_slots": [
+        "MAINHAND",
+        "OFFHAND"
+      ]
+    }
+  ]
+}

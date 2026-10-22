@@ -1,0 +1,13 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "darkrpg.tweaks.compat.amethyst.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "plugin": "darkrpg.tweaks.compat.AmethystSpellPowerMixinPlugin",
+  "mixins": [
+    "SpCompatMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
