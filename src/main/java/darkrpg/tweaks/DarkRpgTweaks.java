@@ -31,7 +31,7 @@ public final class DarkRpgTweaks implements ModInitializer {
                 new class_2960(MOD_ID, "balanced_overrides"), mod,
                 ResourcePackActivationType.ALWAYS_ENABLED);
             if (registered) {
-                LOG.info("[DarkRPG Tweaks 1.0.0-beta.1] ALWAYS-ON balance datapack registered: 24 Soulslike spell assignments + 144 TieredZ item modifiers.");
+                LOG.info("[DarkRPG Tweaks 1.0.0-beta.2] ALWAYS-ON balance datapack registered: 24 Soulslike spell assignments + 144 TieredZ item modifiers.");
             } else {
                 LOG.error("[DarkRPG Tweaks] Could not register built-in balance datapack! The rebalanced items may not load.");
             }

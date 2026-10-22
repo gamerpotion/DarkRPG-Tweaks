@@ -25,7 +25,7 @@ public final class AmethystSpellPowerMixinPlugin implements IMixinConfigPlugin {
     public void onLoad(String mixinPackage) {
         this.active = detectAffectedInstall();
         if (this.active) {
-            System.out.println("[DarkRPG Tweaks 1.0.0-beta.1] Enabling Amethyst Core 1.5.0 / Spell Power 1.6.x compatibility Mixin");
+            System.out.println("[DarkRPG Tweaks 1.0.0-beta.2] Enabling Amethyst Core 1.5.0 / Spell Power 1.6.x compatibility Mixin");
         }
     }
 

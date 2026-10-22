@@ -1,0 +1,1 @@
+package net.minecraft; public class class_2960 { private final String ns,p; public class_2960(String ns, String p){ this.ns=ns; this.p=p;} public String toString(){ return ns+":"+p;} }

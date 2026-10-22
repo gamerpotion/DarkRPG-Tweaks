@@ -1,0 +1,94 @@
+DarkRPG Tweaks 1.0.0 Beta 2 — Fabric Minecraft 1.20.1
+=======================================================
+
+Release status: EXPERIMENTAL. This JAR passes static/bytecode and stubbed
+initializer tests. It has NOT been launched in a full Minecraft client/server.
+It is based on DarkUnbug 1.0.6-beta.2 (the version that survived a PvP
+reflection test with two players at attribute 200). Rebranding, recompilation,
+and datapack registration are new and require an actual test server run.
+
+ONE JAR
+-------
+darkrpg-tweaks-fabric-1.20.1-1.0.0-beta.2.jar
+
+Mod name: DarkRPG Tweaks
+Mod ID: darkrpg_tweaks
+Fabric Loader: target 0.20.1, Minecraft 1.20.1 (Java 17+)
+Requires Fabric API (with fabric-resource-loader-v0).
+
+WHAT IS INCLUDED
+----------------
+1. Amethyst Core 1.5.0 / Spell Power 1.6.x mixin compatibility.
+2. Client-only Origins 1.10.0 missing-layer guard.
+3. Client-only Cosmetica 2.0.1 / Spell Engine 1.10.10 mixin collision bridge
+   with startup diagnostics.
+4. More RPG Library 2.7.2 player-vs-player recursive reflection protection.
+5. Built-in, always-enabled data pack containing 24 Soulslike Weaponry
+   Spell Engine assignment compatibility overrides and 144 balanced TieredZ
+   attribute definitions, exactly matching the previous separate datapacks.
+6. On first run, if TieredZ 1.3.3 is present and config/tiered.json5 has the
+   original 0.9 reforgeModifier, the mod automatically changes JUST THAT
+   value to 0.65, storing the previous file at
+   config/tiered.json5.before-darkrpg-tweaks.bak. A later restart may be
+   needed if TieredZ read the config before the update. Any customized
+   nondefault reforgeModifier is preserved. An existing backup means the mod
+   won't apply this automatic setting again. No config file is created if
+   missing.
+
+WHAT IS NOT INCLUDED
+--------------------
+* Original DarkUnbug's allow-editing-player-data Mixin.
+* DarkUnbug HP/absorption repair trigger scoreboard, tick/load functions,
+  or /trigger darkunbug command.
+* Standalone Paxi ZIPs or separate TieredZ config file.
+* The TieredZ mod or any library JARs.
+
+INSTALLATION / MIGRATION
+------------------------
+1. Back up Minecraft world and config.
+2. Remove old DarkUnbug 1.0.6-beta.2 JAR from both the test server and
+   client mods folders. DO NOT run DarkUnbug 1.0.6 alongside DarkRPG Tweaks;
+   their compatibility Mixins will overlap.
+3. Remove the old separate Soulslike compatibility datapack and TieredZ
+   balanced datapack from config/paxi/datapacks and <world>/datapacks if
+   installed. They are both embedded in this JAR.
+4. Copy ONLY darkrpg-tweaks-fabric-1.20.1-1.0.0-beta.2.jar into mods/ on
+   the server and all modpack clients. Keep More RPG Library, Amethyst Core,
+   Origins, Cosmetica/Spell Engine, TieredZ, etc., as applicable.
+5. Fully restart server and clients. If TieredZ config is adjusted on the
+   first run, restart a second time to guarantee the reforge setting is active.
+
+HOW TO VERIFY
+-------------
+A. Search latest.log for:
+   "[DarkRPG Tweaks 1.0.0-beta.2] ALWAYS-ON balance datapack registered"
+   This means pack registration succeeded, not that the gameplay overrides
+   were independently verified.
+B. /datapack list enabled: inspect whether the built-in pack containing
+   "balanced_overrides" is enabled (name formatting can differ by loader).
+C. Craft iron armor/tools repeatedly; Common and Uncommon should have
+   small nonnegative bonuses. Reforging should remain enabled.
+D. Confirm there are no 24 Soulslike Spell Engine assignment warnings.
+E. Run previously reproducible test-server PvP scenario, two Human players
+   both at 200 Damage Reflect, once per attack, with backups. No stack
+   overflow should occur. Return their attributes to 100 afterwards.
+F. Test client startup with the Cosmetica+Spell Engine pair and inspect its
+   compatibility diagnostics. Check Origins and Amethyst Core menus/tooltips.
+
+WARNING: This is a rebuild of previously tested compatibility patches and
+is NOT a substitute for in-game acceptance testing. The 1.0.6 Beta 2 PvP
+patch was server-tested, but the new packaged JAR has not been.
+
+BUILD / SOURCE
+--------------
+A self-contained compile-from-source bundle accompanies this JAR.
+It uses JDK 17+ and local compile-only API stubs to build the Java classes;
+the bundled JAR contains only production classes and resources (no stubs).
+The stub compilation is a binary/static check, not integration with actual
+Fabric Loader or Minecraft runtime.
+
+LICENSE / ATTRIBUTION
+---------------------
+The older DarkUnbug compatibility code was repackaged and rebranded. Original
+HP repair functionality was intentionally removed. The original GPL-3.0
+license and compatibility attribution are preserved in the bundled files.

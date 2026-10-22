@@ -1,0 +1,17 @@
+# Local build output
+rebuild-classes/
+*.jar
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Editors and system files
+.idea/
+.vscode/
+.DS_Store
+
+# Common build workspace
+build/
+.gradle/
+out/

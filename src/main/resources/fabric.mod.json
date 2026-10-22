@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "darkrpg_tweaks",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "name": "DarkRPG Tweaks",
   "description": "Compatibility and balance fixes for DarkRPG Fabric 1.20.1: Amethyst Core/Spell Power, Origins, Cosmetica/Spell Engine, More RPG Library PvP reflection, Soulslike Weaponry assignments, and TieredZ balancing.",
   "license": "GPL-3.0-or-later",

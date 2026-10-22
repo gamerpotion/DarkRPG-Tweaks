@@ -1,4 +1,4 @@
-DarkRPG Tweaks 1.0.0-beta.1
+DarkRPG Tweaks 1.0.0-beta.2
 Derived from compatibility work in DarkUnbug 1.0.6 beta 2 (GPL-3.0); original HP-repair functionality removed.
 Amethyst Core compatibility patch authored separately in compatible MIT-licensed work, re-integrated here.
 Two JSON overrides expanded from the previously provided DarkRPG Soulslike and TieredZ datapacks.

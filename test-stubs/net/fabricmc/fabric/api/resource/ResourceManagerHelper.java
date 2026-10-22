@@ -1,0 +1,1 @@
+package net.fabricmc.fabric.api.resource; import net.minecraft.class_2960; import net.fabricmc.loader.api.ModContainer; public interface ResourceManagerHelper { static boolean registerBuiltinResourcePack(class_2960 id, ModContainer container, ResourcePackActivationType activationType) { System.out.println("registered built-in pack " + id); return true; } }

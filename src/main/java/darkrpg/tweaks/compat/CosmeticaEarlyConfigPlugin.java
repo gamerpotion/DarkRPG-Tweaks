@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
 /**
- * DarkRPG Tweaks 1.0.0-beta.1 test bridge for the *exact* Cosmetica 2.0.1 and
+ * DarkRPG Tweaks 1.0.0-beta.2 test bridge for the *exact* Cosmetica 2.0.1 and
  * Spell Engine 1.10.10 redirect collision on Minecraft Fabric 1.20.1.
  *
  * IMPORTANT: Unlike 1.0.3, runs in the mixin config onLoad callback, not

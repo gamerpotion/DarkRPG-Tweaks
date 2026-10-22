@@ -10,7 +10,7 @@ public final class CosmeticaBridgeClientDiagnostics implements ClientModInitiali
 
     @Override public void onInitializeClient() {
         BridgeDiagnostics.Snapshot status = BridgeDiagnostics.read();
-        String prefix = "[DarkRPG Tweaks 1.0.0-beta.1] Cosmetica/Spell Engine bridge ";
+        String prefix = "[DarkRPG Tweaks 1.0.0-beta.2] Cosmetica/Spell Engine bridge ";
         switch (status.state()) {
             case ACTIVE -> LOGGER.info(prefix + "ACTIVE: " + status.reason()
                     + ". Note: gameplay keybindings are not verified by this diagnostic.");
