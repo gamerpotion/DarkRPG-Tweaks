@@ -1,0 +1,13 @@
+# Gradle / Fabric Loom caches and generated builds
+.gradle/
+build/
+out/
+run/
+.idea/
+.vscode/
+*.iml
+.DS_Store
+
+# The old Python / mock-API build was superseded by Fabric Loom.
+__pycache__/
+*.pyc

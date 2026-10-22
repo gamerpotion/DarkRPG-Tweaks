@@ -1,0 +1,108 @@
+plugins {
+    id 'fabric-loom' version '1.6.12'
+    id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+repositories {
+    // The exact affected versions of the optional integrations are publicly
+    // published here. These are compile-only: they are NOT bundled into this mod.
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'Modrinth'
+                url = 'https://api.modrinth.com/maven'
+            }
+        }
+        filter { includeGroup 'maven.modrinth' }
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    // IMPORTANT: This project's 1.20.1 source is written against Fabric
+    // intermediary names (class_1309, class_2960, etc.), NOT Yarn names.
+    // Changing to Yarn/Mojang mappings without migrating source will not compile.
+    mappings "net.fabricmc:intermediary:${project.minecraft_version}:v2"
+
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+    // Versions tested by the original DarkRPG Tweaks compatibility patches:
+    // Origins 1.10.0 (1.20.1)
+    modCompileOnly('maven.modrinth:3BeIrqZR:OdNHB7Bh') { transitive = false }
+    // Amethyst Core 1.5.0+1.20.1
+    modCompileOnly('maven.modrinth:UbOpZw7q:t3Tks6iD') { transitive = false }
+    // Cosmetica 2.0.1-1.20.1 Fabric
+    modCompileOnly('maven.modrinth:s9hF9QGp:JungLD89') { transitive = false }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    withSourcesJar()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 17
+}
+
+// Prevent accidentally publishing the old rarity chances, omitting a data
+// override, or introducing JSON syntax errors.
+tasks.register('verifyBundledDatapacks') {
+    group = 'verification'
+    description = 'Validate both built-in datapacks and TieredZ Beta 2 weights.'
+    doLast {
+        def dataDir = file('src/main/resources/resourcepacks/balanced_overrides/data')
+        def tieredDir = new File(dataDir, 'tiered/item_attributes')
+        def soulsDir = new File(dataDir, 'soulsweapons/spell_assignments')
+        def parser = new groovy.json.JsonSlurper()
+        def expected = [common: 30, uncommon: 30, rare: 25,
+                        epic: 10, legendary: 4, unique: 1]
+        def counts = [:].withDefault { 0 }
+        def tieredFiles = fileTree(tieredDir) { include '**/*.json' }.files
+        def soulsFiles = fileTree(soulsDir) { include '**/*.json' }.files
+        if (tieredFiles.size() != 144 || soulsFiles.size() != 24) {
+            throw new GradleException("Expected 144 TieredZ + 24 Soulslike files; found ${tieredFiles.size()} + ${soulsFiles.size()}")
+        }
+        tieredFiles.each { f ->
+            def json = parser.parse(f)
+            def rarity = f.name.tokenize('_').first()
+            if (!expected.containsKey(rarity) || json.weight != expected[rarity]) {
+                throw new GradleException("Unexpected TieredZ weight in ${f}: ${json.weight}")
+            }
+            counts[rarity] = counts[rarity] + 1
+            (json.attributes ?: []).each { a ->
+                if (a?.modifier?.amount instanceof Number && a.modifier.amount < 0) {
+                    throw new GradleException("Negative attribute bonus in ${f}")
+                }
+            }
+        }
+        soulsFiles.each { f -> parser.parse(f) }
+        expected.keySet().each { rarity ->
+            if (counts[rarity] != 24) {
+                throw new GradleException("Expected 24 ${rarity} definitions; found ${counts[rarity]}")
+            }
+        }
+        logger.lifecycle('DarkRPG Tweaks datapacks verified: 144 TieredZ, 24 Soulslike.')
+    }
+}
+
+tasks.named('check') {
+    dependsOn tasks.named('verifyBundledDatapacks')
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
