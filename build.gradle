@@ -15,6 +15,11 @@ repositories {
     // the intermediary-identity development mappings.
     maven { url = 'https://maven.fabricmc.net/' }
 
+    // Calio 1.11.0 API, embedded by Origins 1.10.0 at runtime.
+    // Exposed separately for source compilation because Modrinth's Maven
+    // does not transitively publish the nested Calio dependency.
+    maven { url = 'https://jitpack.io' }
+
     // The exact affected versions of the optional integrations are publicly
     // published here. These are compile-only: they are NOT bundled into this mod.
     exclusiveContent {
@@ -55,6 +60,9 @@ dependencies {
     // Versions tested by the original DarkRPG Tweaks compatibility patches:
     // Origins 1.10.0 (1.20.1)
     compileOnly('maven.modrinth:3BeIrqZR:OdNHB7Bh') { transitive = false }
+    // Origins/Apoli exposes OriginLayers via Calio's MultiJsonDataLoader.
+    // This API is bundled by Origins at runtime; never include it in our JAR.
+    compileOnly('com.github.apace100:calio:1.11.0') { transitive = false }
     // Amethyst Core 1.5.0+1.20.1
     compileOnly('maven.modrinth:UbOpZw7q:t3Tks6iD') { transitive = false }
     // Cosmetica 2.0.1-1.20.1 Fabric

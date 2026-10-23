@@ -64,3 +64,15 @@ those JARs through Loom's remapper is unnecessary and can cause the
 
 This adjustment doesn't bundle optional mods into DarkRPG Tweaks or alter
 the built-in datapack resources.
+
+### Calio compile-only dependency
+
+Origins 1.10.0 includes the Calio 1.11.0 library at runtime. The Origins
+artifact downloaded from Modrinth does not expose nested dependencies to the
+Java compiler, so referencing `OriginLayers.size()` also requires the Calio
+`MultiJsonDataLoader` class on the compile classpath.
+
+`build.gradle` adds the JitPack repository and a `compileOnly` dependency on
+`com.github.apace100:calio:1.11.0`, with transitive dependencies disabled.
+Calio is **not bundled** into the DarkRPG Tweaks output JAR, and no Java
+compatibility code or datapack definitions are changed.
