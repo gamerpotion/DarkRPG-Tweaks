@@ -11,6 +11,10 @@ base {
 }
 
 repositories {
+    // Needed for the canonical Fabric Yarn v2 mapping artifact used to generate
+    // the intermediary-identity development mappings.
+    maven { url = 'https://maven.fabricmc.net/' }
+
     // The exact affected versions of the optional integrations are publicly
     // published here. These are compile-only: they are NOT bundled into this mod.
     exclusiveContent {
@@ -24,12 +28,20 @@ repositories {
     }
 }
 
+// Prepare the mapping jar before Loom resolves its mappings configuration.
+// Gradle caches the downloaded Yarn artifact; no custom mapping JAR is stored
+// in Git or bundled with the release mod.
+apply from: 'gradle/identity-mappings.gradle'
+
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    // IMPORTANT: This project's 1.20.1 source is written against Fabric
-    // intermediary names (class_1309, class_2960, etc.), NOT Yarn names.
-    // Changing to Yarn/Mojang mappings without migrating source will not compile.
-    mappings "net.fabricmc:intermediary:${project.minecraft_version}:v2"
+    // The source is written using runtime intermediary names (class_1309,
+    // method_5643, etc). Loom requires an additional *named* mapping namespace.
+    // Build a development mapping where `named` is an identity copy of
+    // `intermediary` from Fabric Yarn (see gradle/identity-mappings.gradle).
+    // Passing net.fabricmc:intermediary directly caused Loom's namespace merge
+    // error because that artifact does not contain a distinct named namespace.
+    mappings files(project.ext.darkrpgIdentityMappingsJar)
 
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"

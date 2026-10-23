@@ -1,8 +1,11 @@
 # Gradle build notes — DarkRPG Tweaks 1.0.0 Beta 2
 
 This is a **Fabric Loom Gradle** source project for Minecraft 1.20.1.
-The source uses **intermediary mappings**. Do not switch to Yarn or Mojang
-mappings without also migrating the Java source.
+The source uses **intermediary identifiers** (`class_1309`, etc.). To satisfy
+Loom's requirement for a `named` development namespace, the build automatically
+derives a valid **identity `intermediary` → `named` mapping** from published
+Fabric Yarn 1.20.1 v2 mappings. This replaces the invalid attempt to feed Loom
+the `net.fabricmc:intermediary` artifact directly. No Minecraft source is renamed.
 
 ## Requirements
 
@@ -16,7 +19,7 @@ mappings without also migrating the Java source.
 gradle clean build
 ```
 
-Gradle downloads Minecraft, Fabric Loader/API, and compile-only copies of
+Gradle downloads Minecraft, the Yarn mapping artifact, Fabric Loader/API, and compile-only copies of
 Origins 1.10.0, Amethyst Core 1.5.0 and Cosmetica 2.0.1 from public Maven
 repositories. They are **not redistributed** with this source project.
 

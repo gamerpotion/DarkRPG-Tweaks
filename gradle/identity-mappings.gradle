@@ -1,0 +1,87 @@
+// DarkRPG Tweaks targets the same class_*, method_* and field_* identifiers
+// used by installed Fabric 1.20.1 mods. Fabric Loom 1.6 must nevertheless have
+// a proper `named` namespace in addition to `intermediary`. The upstream
+// `net.fabricmc:intermediary` archive only supplies the latter and causes a
+// mapping merge error if passed directly to Loom.
+//
+// Use Fabric Yarn (Tiny v2) as the authoritative source of intermediary IDs.
+// Copy each class, method and field intermediary name into its `named` slot.
+// That yields valid intermediary -> named identity mappings and keeps the
+// published Java source and target signatures untouched.
+
+import java.nio.charset.StandardCharsets
+import java.util.zip.ZipFile
+import java.util.zip.ZipEntry
+import java.util.zip.ZipOutputStream
+
+// This configuration is detached deliberately to avoid resolving Loom's own
+// mappings configuration before the identity mapping artifact exists.
+def yarnArchive = configurations.detachedConfiguration(
+    dependencies.create("net.fabricmc:yarn:${project.yarn_mappings}:v2")
+).singleFile
+
+// Do NOT place the generated mapping jar inside build/: `gradle clean build`
+// removes build/ after project configuration, which would delete this file.
+def dest = file('.gradle/generated-mappings/intermediary-identity-mappings.jar')
+
+def regenerate = !dest.isFile() || dest.lastModified() < yarnArchive.lastModified()
+if (regenerate) {
+    dest.parentFile.mkdirs()
+    def yarnZip = new ZipFile(yarnArchive)
+    try {
+        def mappingEntry = yarnZip.getEntry('mappings/mappings.tiny')
+        if (mappingEntry == null) {
+            throw new GradleException('Downloaded Yarn archive does not contain mappings/mappings.tiny')
+        }
+        String source = yarnZip.getInputStream(mappingEntry).withCloseable { ins ->
+            ins.getText('UTF-8')
+        }
+        def lines = source.split('\n', -1)
+        if (lines[0].trim() != 'tiny\t2\t0\tintermediary\tnamed') {
+            throw new GradleException('Unexpected Fabric Yarn Tiny v2 mapping header: ' + lines[0])
+        }
+        int classCount = 0
+        int memberCount = 0
+        String generated = lines.collect { String line ->
+            if (line.startsWith('c\t')) {
+                def cols = line.split('\t', -1)
+                if (cols.length != 3) throw new GradleException('Malformed class mapping line')
+                cols[2] = cols[1]
+                classCount++
+                return cols.join('\t')
+            }
+            if (line.startsWith('\tm\t') || line.startsWith('\tf\t')) {
+                def cols = line.split('\t', -1)
+                if (cols.length != 5) throw new GradleException('Malformed method/field mapping line')
+                cols[4] = cols[3]
+                memberCount++
+                return cols.join('\t')
+            }
+            return line
+        }.join('\n')
+        if (classCount < 1000 || memberCount < 1000) {
+            throw new GradleException("Incomplete identity mappings: ${classCount} classes, ${memberCount} members")
+        }
+
+        def temp = new File(dest.parentFile, dest.name + '.tmp')
+        def output = new ZipOutputStream(temp.newOutputStream())
+        try {
+            output.putNextEntry(new ZipEntry('mappings/mappings.tiny'))
+            output.write(generated.getBytes(StandardCharsets.UTF_8))
+            output.closeEntry()
+        } finally {
+            output.close()
+        }
+        if (dest.exists() && !dest.delete()) {
+            throw new GradleException('Could not remove previous generated mappings file')
+        }
+        if (!temp.renameTo(dest)) {
+            throw new GradleException('Could not write generated intermediary identity mappings')
+        }
+        logger.lifecycle("Created identity mappings for ${classCount} Minecraft classes and ${memberCount} members")
+    } finally {
+        yarnZip.close()
+    }
+}
+
+project.ext.darkrpgIdentityMappingsJar = dest
