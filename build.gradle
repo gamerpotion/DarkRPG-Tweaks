@@ -46,13 +46,19 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
+    // Compile-only compatibility API dependencies are already in the Fabric
+    // runtime intermediary namespace used by this project's identity mappings.
+    // Keep them as Gradle compileOnly (NOT modCompileOnly): Loom 1.6.12 would
+    // otherwise attempt to remap these optional jars and may reject their
+    // newer producer Loom metadata before compilation can begin.
+    // They are not bundled in the final JAR.
     // Versions tested by the original DarkRPG Tweaks compatibility patches:
     // Origins 1.10.0 (1.20.1)
-    modCompileOnly('maven.modrinth:3BeIrqZR:OdNHB7Bh') { transitive = false }
+    compileOnly('maven.modrinth:3BeIrqZR:OdNHB7Bh') { transitive = false }
     // Amethyst Core 1.5.0+1.20.1
-    modCompileOnly('maven.modrinth:UbOpZw7q:t3Tks6iD') { transitive = false }
+    compileOnly('maven.modrinth:UbOpZw7q:t3Tks6iD') { transitive = false }
     // Cosmetica 2.0.1-1.20.1 Fabric
-    modCompileOnly('maven.modrinth:s9hF9QGp:JungLD89') { transitive = false }
+    compileOnly('maven.modrinth:s9hF9QGp:JungLD89') { transitive = false }
 }
 
 java {

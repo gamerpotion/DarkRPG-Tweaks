@@ -52,3 +52,15 @@ build with `./gradlew` instead of installing Gradle.
 
 `.github/workflows/gradle.yml` builds using Gradle 8.8, JDK 17, and
 uploads the compiled JAR as a GitHub Actions artifact.
+
+### Loom dependency compatibility
+
+The three optional mod API JARs (Origins 1.10.0, Amethyst Core 1.5.0,
+Cosmetica 2.0.1) use Gradle `compileOnly` rather than Loom `modCompileOnly`.
+This project deliberately uses Minecraft's *intermediary* names as its dev
+mappings; the runtime Fabric mod JARs already reference these names. Sending
+those JARs through Loom's remapper is unnecessary and can cause the
+`Mod was built with a newer version of Loom` validation error in Loom 1.6.12.
+
+This adjustment doesn't bundle optional mods into DarkRPG Tweaks or alter
+the built-in datapack resources.
