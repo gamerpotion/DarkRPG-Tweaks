@@ -1,4 +1,4 @@
-# Gradle build notes — DarkRPG Tweaks 1.0.0 Beta 2
+# Gradle build notes — DarkRPG Tweaks 1.0.0 Beta 4
 
 This is a **Fabric Loom Gradle** source project for Minecraft 1.20.1.
 The source uses **intermediary identifiers** (`class_1309`, etc.). To satisfy
@@ -25,7 +25,7 @@ repositories. They are **not redistributed** with this source project.
 
 The deployable Fabric mod JAR appears in `build/libs/`.
 `gradle verifyBundledDatapacks` verifies the 144 TieredZ definitions and
-the 24 Soulslike spell assignments, including Beta 2 rarity weights.
+the 24 Soulslike spell assignments, including Beta 2 rarity weights (unchanged for Beta 4).
 
 ## Standard wrapper (optional)
 
@@ -76,3 +76,17 @@ Java compiler, so referencing `OriginLayers.size()` also requires the Calio
 `com.github.apace100:calio:1.11.0`, with transitive dependencies disabled.
 Calio is **not bundled** into the DarkRPG Tweaks output JAR, and no Java
 compatibility code or datapack definitions are changed.
+
+## Client main-menu version display (Beta 4)
+
+The client entrypoint `darkrpg.tweaks.menu.MenuVersionClient` subscribes to Fabric
+ScreenEvents.AFTER_INIT and registers an after-render callback for title/main-menu
+screens. `MenuVersionConfig` lazily creates `config/darkrpg-tweaks-menu.properties`
+if missing; the file is never overwritten. Update the version keys when packaging
+a new DarkRPG release; include the properties file in CurseForge overrides/config.
+
+This feature never initializes on a dedicated server. The project targets Fabric
+API 0.92.12 and Fabric Loader 0.20.1 for Minecraft 1.20.1.
+
+**Testing caveat:** Full in-game verification with DarkMenu 1.1.9 is not included
+in the offline source check; do not treat the source archive as a runtime test.
