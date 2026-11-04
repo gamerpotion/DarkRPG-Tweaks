@@ -11,6 +11,7 @@ base {
 }
 
 repositories {
+    maven { url 'https://maven.ladysnake.org/releases' }
     // Needed for the canonical Fabric Yarn v2 mapping artifact used to generate
     // the intermediary-identity development mappings.
     maven { url = 'https://maven.fabricmc.net/' }
@@ -39,6 +40,7 @@ repositories {
 apply from: 'gradle/identity-mappings.gradle'
 
 dependencies {
+    modCompileOnly('io.github.apace100:apoli:2.9.0+mc.1.20.x') { transitive = false }
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     // The source is written using runtime intermediary names (class_1309,
     // method_5643, etc). Loom requires an additional *named* mapping namespace.
