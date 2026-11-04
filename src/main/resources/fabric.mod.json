@@ -1,24 +1,25 @@
 {
   "schemaVersion": 1,
   "id": "darkrpg_tweaks",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.6",
   "name": "DarkRPG Tweaks",
-  "description": "Compatibility and balance fixes for DarkRPG Fabric 1.20.1: Amethyst Core/Spell Power, Origins, Cosmetica/Spell Engine, More RPG Library PvP reflection, Soulslike Weaponry assignments, and TieredZ balancing. Main-menu version display configurable via config/darkrpg-tweaks-menu.properties.",
+  "description": "Compatibility, stability and balance fixes for DarkRPG Fabric 1.20.1: Amethyst Core/Spell Power, Origins/Apoli, Cosmetica/Spell Engine, More RPG Library PvP reflection, 24 Soulslike Weaponry spell assignments, and 144 balanced TieredZ modifiers with reload enforcement.",
   "license": "GPL-3.0-or-later",
   "environment": "*",
   "mixins": [
     "darkrpg-tweaks-amethyst.mixins.json",
     "darkrpg-tweaks-origins.mixins.json",
     "darkrpg-tweaks-cosmetica.mixins.json",
-    "darkrpg-tweaks-pvp.mixins.json"
+    "darkrpg-tweaks-pvp.mixins.json",
+    "darkrpg-tweaks-apoli-sync.mixins.json",
+    "darkrpg-tweaks-tiered-registry.mixins.json"
   ],
   "entrypoints": {
     "main": [
       "darkrpg.tweaks.DarkRpgTweaks"
     ],
     "client": [
-      "darkrpg.tweaks.compat.CosmeticaBridgeClientDiagnostics",
-      "darkrpg.tweaks.menu.MenuVersionClient"
+      "darkrpg.tweaks.compat.CosmeticaBridgeClientDiagnostics"
     ]
   },
   "depends": {

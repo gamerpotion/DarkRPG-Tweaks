@@ -1,0 +1,12 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "darkrpg.tweaks.compat.tiered.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "TieredBalancedRegistryMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

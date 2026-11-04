@@ -63,6 +63,8 @@ dependencies {
     // Origins/Apoli exposes OriginLayers via Calio's MultiJsonDataLoader.
     // This API is bundled by Origins at runtime; never include it in our JAR.
     compileOnly('com.github.apace100:calio:1.11.0') { transitive = false }
+    // TieredZ 1.3.3 API for balance registry mixin
+    compileOnly('maven.modrinth:z6sMEexp:GFUW7N2P') { transitive = false }
     // Amethyst Core 1.5.0+1.20.1
     compileOnly('maven.modrinth:UbOpZw7q:t3Tks6iD') { transitive = false }
     // Cosmetica 2.0.1-1.20.1 Fabric
