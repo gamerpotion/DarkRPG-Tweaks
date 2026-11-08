@@ -8,7 +8,7 @@ DarkRPG Tweaks is included with recent DarkRPG Fabric releases and is primarily 
 
 ## Features
 
-| Component | Included behavior |
+| Component | Behavior |
 | --- | --- |
 | Amethyst Core / Spell Power | Compatibility fix for the affected spell-power integration. |
 | Origins / Apoli | Missing-layer protection, plus a safeguard against synchronizing powers after a player disconnects. |
@@ -19,5 +19,5 @@ DarkRPG Tweaks is included with recent DarkRPG Fabric releases and is primarily 
 | TieredZ reforging | Existing reforge-odds migration, plus registry enforcement after datapack reloads. |
 | Simply Swords / Spell Power | Compatibility for Simply Swords 1.70.2 and Spell Power 1.6.x; prevents weapon tooltip crashes. |
 | Traveler's Backpack / Trinkets | Backpack button beside Inventory Profiles Next controls, avoiding the Trinkets slot overlap with Trinkets back-slot integration off. |
-| Compact FPS counter | Small bottom-right FPS display (65% font size); can replace Sodium Extra’s larger counter. |
+| Compact FPS counter | Small bottom-right FPS display (65% font size). |
 | Main menu | No version display or configuration. Use the separate PackIdentity mod for version information. |
