@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "id": "darkrpg_tweaks",
-  "version": "1.0.0-beta.17",
+  "version": "1.0.0-beta.20",
   "name": "DarkRPG Tweaks",
-  "description": "DarkRPG Fabric 1.20.1 balance and compatibility fixes: Amethyst Core/Spell Power tooltip protection; Origins missing-layer and Apoli disconnected-player sync guards; Cosmetica/Spell Engine keybinding compatibility; More RPG Library PvP reflection-loop protection; Simply Swords 1.70.2/Spell Power 1.6.x attribute compatibility; 24 Soulslike Weaponry spell-assignment overrides; 144 balanced TieredZ modifiers, reforge tuning and reload safeguards. No menu overlay or user configuration file. Traveler's Backpack 9.1.56 inventory-button compatibility with Trinkets and Inventory Profiles Next (client-side).",
+  "description": "DarkRPG Fabric 1.20.1 balance and compatibility fixes: Amethyst Core/Spell Power tooltip protection; Origins missing-layer and Apoli disconnected-player sync guards; Cosmetica/Spell Engine keybinding compatibility; More RPG Library PvP reflection-loop protection; Simply Swords 1.70.2/Spell Power 1.6.x attribute compatibility; 24 Soulslike Weaponry spell-assignment overrides; 144 balanced TieredZ modifiers, reforge tuning and reload safeguards. No menu overlay or user configuration file. Traveler's Backpack 9.1.56 inventory-button compatibility with Trinkets and Inventory Profiles Next (client-side). Compact bottom-right FPS counter (client-side, 65% font size).",
   "license": "GPL-3.0-or-later",
   "environment": "*",
   "mixins": [
@@ -21,7 +21,8 @@
     ],
     "client": [
       "darkrpg.tweaks.compat.CosmeticaBridgeClientDiagnostics",
-      "darkrpg.tweaks.compat.backpack.BackpackInventoryButtonClient"
+      "darkrpg.tweaks.compat.backpack.BackpackInventoryButtonClient",
+      "darkrpg.tweaks.compat.hud.CompactFpsClient"
     ]
   },
   "depends": {

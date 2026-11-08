@@ -92,7 +92,7 @@ tasks.withType(JavaCompile).configureEach {
 // override, or introducing JSON syntax errors.
 tasks.register('verifyBundledDatapacks') {
     group = 'verification'
-    description = 'Validate both built-in datapacks and TieredZ Beta 2 weights.'
+    description = 'Validate both built-in datapacks and configured TieredZ weights.'
     doLast {
         def dataDir = file('src/main/resources/resourcepacks/balanced_overrides/data')
         def tieredDir = new File(dataDir, 'tiered/item_attributes')
