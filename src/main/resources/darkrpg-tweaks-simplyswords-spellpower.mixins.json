@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "darkrpg.tweaks.compat.simplyswords.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "plugin": "darkrpg.tweaks.compat.simplyswords.SmoothCompatExclusionPlugin",
+  "mixins": [
+    "SimplySwordsAttributeCompatMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

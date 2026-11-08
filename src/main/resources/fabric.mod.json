@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "id": "darkrpg_tweaks",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0-beta.17",
   "name": "DarkRPG Tweaks",
-  "description": "Compatibility, stability and balance fixes for DarkRPG Fabric 1.20.1: Amethyst Core/Spell Power, Origins/Apoli, Cosmetica/Spell Engine, More RPG Library PvP reflection, 24 Soulslike Weaponry spell assignments, and 144 balanced TieredZ modifiers with reload enforcement.",
+  "description": "DarkRPG Fabric 1.20.1 balance and compatibility fixes: Amethyst Core/Spell Power tooltip protection; Origins missing-layer and Apoli disconnected-player sync guards; Cosmetica/Spell Engine keybinding compatibility; More RPG Library PvP reflection-loop protection; Simply Swords 1.70.2/Spell Power 1.6.x attribute compatibility; 24 Soulslike Weaponry spell-assignment overrides; 144 balanced TieredZ modifiers, reforge tuning and reload safeguards. No menu overlay or user configuration file. Traveler's Backpack 9.1.56 inventory-button compatibility with Trinkets and Inventory Profiles Next (client-side).",
   "license": "GPL-3.0-or-later",
   "environment": "*",
   "mixins": [
@@ -12,14 +12,16 @@
     "darkrpg-tweaks-cosmetica.mixins.json",
     "darkrpg-tweaks-pvp.mixins.json",
     "darkrpg-tweaks-apoli-sync.mixins.json",
-    "darkrpg-tweaks-tiered-registry.mixins.json"
+    "darkrpg-tweaks-tiered-registry.mixins.json",
+    "darkrpg-tweaks-simplyswords-spellpower.mixins.json"
   ],
   "entrypoints": {
     "main": [
       "darkrpg.tweaks.DarkRpgTweaks"
     ],
     "client": [
-      "darkrpg.tweaks.compat.CosmeticaBridgeClientDiagnostics"
+      "darkrpg.tweaks.compat.CosmeticaBridgeClientDiagnostics",
+      "darkrpg.tweaks.compat.backpack.BackpackInventoryButtonClient"
     ]
   },
   "depends": {
@@ -36,6 +38,7 @@
     "spell_engine": "*",
     "more_rpg_classes": "*",
     "soulsweapons": "*",
-    "tiered": "*"
+    "tiered": "*",
+    "simplyswords": "*"
   }
 }

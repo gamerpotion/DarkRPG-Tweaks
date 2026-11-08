@@ -40,6 +40,10 @@ repositories {
 apply from: 'gradle/identity-mappings.gradle'
 
 dependencies {
+    // Compile-only optional compatibility dependency; not bundled in the mod.
+    compileOnly('maven.modrinth:bK3Ubu9p:Tq7tcDiO') { transitive = false }
+    // Compile-only optional compatibility dependency; not bundled in the mod.
+    compileOnly('maven.modrinth:spell-power:1.6.1+1.20.1-fabric') { transitive = false }
     modCompileOnly('io.github.apace100:apoli:2.9.0+mc.1.20.x') { transitive = false }
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     // The source is written using runtime intermediary names (class_1309,

@@ -34,7 +34,7 @@ public abstract class TieredBalancedRegistryMixin {
         try (InputStream indexStream = getClass().getClassLoader()
                     .getResourceAsStream("assets/darkrpg_tweaks/tiered-override-index.txt")) {
             if (indexStream == null) {
-                System.err.println("[DarkRPG Tweaks beta.6] ERROR: Tiered modifier index missing");
+                System.err.println("[DarkRPG Tweaks beta.17] ERROR: Tiered modifier index missing");
                 return;
             }
             try (BufferedReader indexReader = new BufferedReader(new InputStreamReader(indexStream, StandardCharsets.UTF_8))) {
@@ -52,14 +52,14 @@ public abstract class TieredBalancedRegistryMixin {
                         }
                     } catch (RuntimeException | java.io.IOException problem) {
                         errors++;
-                        System.err.println("[DarkRPG Tweaks beta.6] Invalid Tiered balance entry " + path + ": " + problem);
+                        System.err.println("[DarkRPG Tweaks beta.17] Invalid Tiered balance entry " + path + ": " + problem);
                     }
                 }
             }
         } catch (java.io.IOException problem) {
-            System.err.println("[DarkRPG Tweaks beta.6] Failed to enforce Tiered balance: " + problem);
+            System.err.println("[DarkRPG Tweaks beta.17] Failed to enforce Tiered balance: " + problem);
         }
-        System.out.println("[DarkRPG Tweaks beta.6] Tiered registry balance applied: " + count
+        System.out.println("[DarkRPG Tweaks beta.17] Tiered registry balance applied: " + count
                 + " positive-only modifier definitions, " + errors + " errors.");
     }
 }

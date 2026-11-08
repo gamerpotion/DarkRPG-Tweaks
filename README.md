@@ -17,4 +17,6 @@ DarkRPG Tweaks is included with recent DarkRPG Fabric releases and is primarily 
 | Soulslike Weaponry / Spell Engine | 24 built-in spell-assignment overrides. |
 | TieredZ 1.3.3 | 144 balanced modifier definitions, with positive attribute amounts in the bundled entries. |
 | TieredZ reforging | Existing reforge-odds migration, plus a **beta.5 registry enforcement** after datapack reloads. |
-| Main menu | No version display or configuration. Use the separate PackIdentity mod to display version information. |
+| Simply Swords / Spell Power | Compatibility for Simply Swords 1.70.2 and Spell Power 1.6.x; prevents weapon tooltip crashes. |
+| Traveler's Backpack / Trinkets | Backpack button beside Inventory Profiles Next controls, avoiding the Trinkets slot overlap with Trinkets back-slot integration off. |
+| Main menu | No version display or configuration. Use the separate PackIdentity mod for version information. |
